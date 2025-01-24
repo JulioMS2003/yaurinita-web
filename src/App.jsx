@@ -23,13 +23,15 @@ export function App() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:5000/buscar', {
+      // Usamos la variable de entorno
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/buscar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ clienteTerm: codigo }),
       });
+      
 
       if (!response.ok) {
         throw new Error('Error en la búsqueda');
